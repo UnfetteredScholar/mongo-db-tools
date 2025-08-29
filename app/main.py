@@ -1,3 +1,4 @@
+import os
 from api.v1.routers import database
 from core.config import settings
 from fastapi import FastAPI
@@ -21,3 +22,8 @@ app.include_router(database.router, prefix=settings.API_V1_STR, tags=["database"
 # Mount MCP
 mcp = FastApiMCP(app)
 mcp.mount_http(mount_path="/streamable-http/mcp")
+
+if __name__ == "__main__":
+    import uvicorn
+    port = int(os.environ.get("PORT", 8000))  # Render sets PORT automatically
+    uvicorn.run(app, host="0.0.0.0", port=port)

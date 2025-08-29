@@ -1,0 +1,18 @@
+services:
+  mongo-db-tools-mcp-server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # restart: always
+    # depends_on:
+    #   - mongo
+    ports:
+      - 8100:8000
+    volumes:
+      - ./app/:/app:rw
+    environment:
+      PLATFRORM_INT_URL: ${PLATFRORM_INT_URL}
+      QUEST_AI_SECRET_KEY: ${QUEST_AI_SECRET_KEY}
+      PUBLIC_KEY_B64: ${PUBLIC_KEY_B64}
+      MARKETPLACE_URL: ${MARKETPLACE_URL}
+
